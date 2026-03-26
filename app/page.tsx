@@ -15,8 +15,8 @@ export default function Home() {
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const opacityBg = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
 
-  // OPRAVA TYPESCRIPTU: Natvrdo řekneme, že jsou to přesně 4 čísla pro křivku
-  const smooth: [number, number, number, number] = [0.16, 1, 0.3, 1];
+  // BULLETPROOF OPRAVA: Použijeme textový identifikátor křivky, který projde na 100%
+  const smooth = "easeInOut";
 
   return (
     <main className="bg-[#0a0b0a] text-white min-h-screen selection:bg-white selection:text-black font-sans overflow-hidden">
@@ -77,7 +77,7 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          {/* Technický Grid (Glassmorphism s pluskama) */}
+          {/* Technický Grid */}
           <div className="grid grid-cols-2 gap-px bg-white/10 p-px">
             {[
               "Neustálé překračování rozpočtu",
@@ -102,7 +102,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 3: VÝHODNÉ ŘEŠENÍ (Features) */}
+      {/* SECTION 3: VÝHODNÉ ŘEŠENÍ */}
       <section className="relative py-32 px-8 md:px-16 border-t border-white/10 bg-[#0a0b0a]">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
           
