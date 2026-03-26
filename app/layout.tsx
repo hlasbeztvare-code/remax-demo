@@ -1,4 +1,10 @@
-import './globals.css'
+import './globalsimps'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'RE/MAX ALPHA LUXURY | Michal Černý',
+  description: 'Privátní nabídka exkluzivních nemovitostí',
+}
 
 export default function RootLayout({
   children,
@@ -6,8 +12,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="cs" style={{ backgroundColor: 'black' }}>
-      <body style={{ backgroundColor: 'black', margin: 0 }}>{children}</body>
+    <html lang="cs" className="scroll-smooth">
+      <body>{children}</body>
     </html>
   )
 }
