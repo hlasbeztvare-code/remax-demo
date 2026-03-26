@@ -5,8 +5,6 @@ import { Maximize, BedDouble, MapPin, Compass, Bath, Home as HomeIcon, Menu } fr
 import Image from 'next/image';
 
 export default function Home() {
-  const luxuryEasing = [0.16, 1, 0.3, 1];
-
   return (
     <main className="bg-[#080808] text-white min-h-screen font-sans selection:bg-[#D4AF37] selection:text-black overflow-x-hidden">
       
@@ -14,7 +12,7 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-8 bg-gradient-to-b from-black/80 to-transparent">
         <div className="flex flex-col">
           <span className="font-black text-sm tracking-[0.3em] uppercase">RE/MAX <span className="text-gray-500 font-light">ALPHA</span></span>
-          <span className="text-[10px] tracking-[0.4em] text-gray-400 uppercase">LUXURY</span>
+          <span className="text-[10px] tracking-[0.4em] text-gray-400 uppercase font-bold">LUXURY</span>
         </div>
         <div className="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-300">
           <a href="#" className="hover:text-[#D4AF37] transition-colors border-b border-[#D4AF37] pb-1">Vily</a>
@@ -27,7 +25,7 @@ export default function Home() {
         </button>
       </nav>
 
-      {/* HERO SECTION - Přesně podle screenu */}
+      {/* HERO SECTION */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20">
         
         {/* Velký Serif v pozadí */}
@@ -41,16 +39,15 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, x: -30 }} 
             animate={{ opacity: 1, x: 0 }} 
-            transition={{ duration: 1.2, ease: luxuryEasing }}
+            transition={{ duration: 1.2, ease: "circOut" }}
             className="space-y-4"
           >
             <h2 className="text-6xl md:text-[8vw] font-serif font-light leading-[0.85] tracking-tighter uppercase italic">
               KUNRATICE,<br />PRAGUE
             </h2>
             <div className="w-full h-[60vh] relative border border-white/10 overflow-hidden">
-               <Image src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2500" alt="Vila" fill className="object-cover grayscale-[30%]" />
+               <Image src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2500" alt="Vila" fill className="object-cover grayscale-[30%]" priority />
                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-               {/* Kompas v pozadí (dekorace) */}
                <Compass className="absolute top-10 right-10 text-white/10" size={120} strokeWidth={0.5} />
             </div>
           </motion.div>
@@ -58,7 +55,7 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 30 }} 
             animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 1.2, delay: 0.3, ease: luxuryEasing }}
+            transition={{ duration: 1.2, delay: 0.3, ease: "circOut" }}
             className="space-y-8"
           >
             {/* Parametry - Glassmorphism Grid */}
@@ -91,7 +88,7 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Makléř Section - Spodní část */}
+        {/* Makléř Section */}
         <div className="relative z-10 w-full max-w-[1600px] mx-auto mt-24 pb-20 grid grid-cols-1 md:grid-cols-[auto,1fr] gap-12 items-center">
            <div className="w-48 h-64 relative border border-white/20 grayscale hover:grayscale-0 transition-all duration-700">
              <Image src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600" alt="Makléř" fill className="object-cover" />
@@ -99,7 +96,7 @@ export default function Home() {
            <div>
              <h3 className="text-2xl font-bold uppercase tracking-widest">MICHAL ČERNÝ</h3>
              <p className="text-[10px] text-[#D4AF37] tracking-[0.4em] uppercase mb-4">• VÁŠ EXKLUZIVNÍ MAKLÉŘ</p>
-             <div className="flex gap-8 text-[11px] font-bold tracking-widest uppercase text-gray-400">
+             <div className="flex gap-8 text-[11px] font-bold tracking-widest uppercase text-gray-400 font-sans">
                <a href="#" className="hover:text-white transition-colors">+420 777 123 456</a>
                <a href="#" className="hover:text-white transition-colors">MICHAL@REMAX-ALPHA.CZ</a>
              </div>
