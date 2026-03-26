@@ -9,18 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "19.0.0-rc-70fb1363-20241010",
-    "react-dom": "19.0.0-rc-70fb1363-20241010",
-    "next": "15.0.0-canary.184"
+    "beautifulsoup4": "^0.0.1-security",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.6.0",
+    "next": "^16.2.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "request": "^2.88.2"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.0-canary.184",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.0-canary.184"
+    "typescript": "^5"
   }
 }
