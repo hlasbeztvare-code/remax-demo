@@ -1,4 +1,8 @@
-import './globalsimport './globalsimport './globalsimport './globalsimport './globalsimport './globalsimport './globalsimpXURY | Michal Černý',
+import './globalsimps'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'RE/MAX ALPHA LUXURY | Michal Černý',
   description: 'Privátní nabídka exkluzivních nemovitostí',
 }
 
