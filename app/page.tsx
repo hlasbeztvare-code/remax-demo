@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { Maximize, BedDouble, MapPin, Compass, Bath, Home as HomeIcon, Menu } from 'lucide-react';
-import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -46,7 +45,8 @@ export default function Home() {
               KUNRATICE,<br />PRAGUE
             </h2>
             <div className="w-full h-[60vh] relative border border-white/10 overflow-hidden">
-               <Image src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2500" alt="Vila" fill className="object-cover grayscale-[30%]" priority />
+               {/* BULLETPROOF IMAGE BYPASS */}
+               <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2500" alt="Vila" className="absolute inset-0 w-full h-full object-cover grayscale-[30%]" />
                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                <Compass className="absolute top-10 right-10 text-white/10" size={120} strokeWidth={0.5} />
             </div>
@@ -91,7 +91,8 @@ export default function Home() {
         {/* Makléř Section */}
         <div className="relative z-10 w-full max-w-[1600px] mx-auto mt-24 pb-20 grid grid-cols-1 md:grid-cols-[auto,1fr] gap-12 items-center">
            <div className="w-48 h-64 relative border border-white/20 grayscale hover:grayscale-0 transition-all duration-700">
-             <Image src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600" alt="Makléř" fill className="object-cover" />
+             {/* BULLETPROOF IMAGE BYPASS */}
+             <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600" alt="Makléř" className="absolute inset-0 w-full h-full object-cover" />
            </div>
            <div>
              <h3 className="text-2xl font-bold uppercase tracking-widest">MICHAL ČERNÝ</h3>
