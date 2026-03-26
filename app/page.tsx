@@ -15,9 +15,6 @@ export default function Home() {
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const opacityBg = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
 
-  // BULLETPROOF OPRAVA: Použijeme textový identifikátor křivky, který projde na 100%
-  const smooth = "easeInOut";
-
   return (
     <main className="bg-[#0a0b0a] text-white min-h-screen selection:bg-white selection:text-black font-sans overflow-hidden">
       
@@ -35,7 +32,7 @@ export default function Home() {
         </motion.div>
 
         <div className="relative z-10 w-full max-w-[1400px] mx-auto mt-20">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: smooth }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: "easeInOut" }}>
             <h2 className="text-gray-400 font-medium tracking-[0.3em] uppercase text-xs md:text-sm mb-4">
               ZA 3 MĚSÍCE K NASTĚHOVÁNÍ
             </h2>
@@ -45,7 +42,6 @@ export default function Home() {
             </h1>
           </motion.div>
 
-          {/* Architektonické štítky s linkami (jako na screenu) */}
           <div className="relative mt-16 h-40 hidden md:block">
             <motion.div 
               initial={{ width: 0, opacity: 0 }} animate={{ width: 200, opacity: 1 }} transition={{ delay: 0.8, duration: 1 }}
@@ -69,7 +65,7 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
           
           <motion.div 
-            initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1, ease: smooth }}
+            initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1, ease: "easeInOut" }}
             className="flex flex-col justify-end"
           >
             <h2 className="text-5xl md:text-7xl font-black uppercase tracking-widest leading-[0.9] text-white/90">
@@ -77,7 +73,6 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          {/* Technický Grid */}
           <div className="grid grid-cols-2 gap-px bg-white/10 p-px">
             {[
               "Neustálé překračování rozpočtu",
@@ -107,7 +102,7 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
           
           <motion.div 
-            initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, ease: smooth }}
+            initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, ease: "easeInOut" }}
           >
             <h3 className="text-gray-500 uppercase tracking-[0.4em] text-[10px] font-bold mb-4">MODULÁRNÍ DŮM</h3>
             <h2 className="text-5xl md:text-7xl font-black uppercase tracking-widest leading-[0.9] text-white/90 mb-12">
@@ -123,7 +118,6 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Technický List Výhod */}
           <div className="flex flex-col justify-center gap-12 border-l border-white/10 pl-8 md:pl-16 relative">
             {[
               { title: "ÚSPORA ČASU", desc: "Dodávka a montáž hotového domu za pouhých 7-10 dní." },
@@ -132,7 +126,7 @@ export default function Home() {
             ].map((item, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.2, duration: 0.8, ease: smooth }}
+                initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.2, duration: 0.8, ease: "easeInOut" }}
                 className="relative"
               >
                 <Plus size={14} className="absolute -left-[42px] md:-left-[74px] top-1 text-white/40" />
