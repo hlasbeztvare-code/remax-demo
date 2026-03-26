@@ -4,11 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #080808;
-  --foreground: #ffffff;
-}
-
 body {
   background: #080808 !important;
   color: #ffffff !important;
