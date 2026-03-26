@@ -2,12 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #000000;
-  --foreground: #ffffff;
-}
-
 body {
-  background: black;
-  color: white;
+  background: black !important;
+  color: white !important;
+  margin: 0;
+  padding: 0;
 }
