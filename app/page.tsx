@@ -1,145 +1,109 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Menu, ArrowRight } from 'lucide-react';
+import { Maximize, BedDouble, MapPin, Compass, Bath, Home as HomeIcon, Menu } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Home() {
-  const fadeUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
-  };
+  const luxuryEasing = [0.16, 1, 0.3, 1];
 
   return (
-    <main className="bg-white text-[#1a1a1a] min-h-screen font-sans selection:bg-blue-100">
+    <main className="bg-[#080808] text-white min-h-screen font-sans selection:bg-[#D4AF37] selection:text-black overflow-x-hidden">
       
       {/* NAVBAR */}
-      <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-8 md:px-16 py-8 mix-blend-difference">
-        <div className="text-[11px] font-black uppercase tracking-[0.3em]">AUREO <span className="font-light opacity-50">BY MICHAL ČERNÝ</span></div>
-        <div className="flex items-center gap-8">
-          <div className="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-widest text-gray-500">
-             <a href="#" className="hover:text-black transition-colors">Vily</a>
-             <a href="#" className="hover:text-black transition-colors">O mně</a>
-             <a href="#" className="hover:text-black transition-colors">Kontakt</a>
-          </div>
-          <Menu size={20} className="cursor-pointer" />
+      <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-8 bg-gradient-to-b from-black/80 to-transparent">
+        <div className="flex flex-col">
+          <span className="font-black text-sm tracking-[0.3em] uppercase">RE/MAX <span className="text-gray-500 font-light">ALPHA</span></span>
+          <span className="text-[10px] tracking-[0.4em] text-gray-400 uppercase">LUXURY</span>
         </div>
+        <div className="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-300">
+          <a href="#" className="hover:text-[#D4AF37] transition-colors border-b border-[#D4AF37] pb-1">Vily</a>
+          <a href="#" className="hover:text-[#D4AF37] transition-colors">Byty</a>
+          <a href="#" className="hover:text-[#D4AF37] transition-colors">O nás</a>
+          <a href="#" className="hover:text-[#D4AF37] transition-colors">Kontakt</a>
+        </div>
+        <button className="flex items-center gap-3 border border-white/20 px-6 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+          <Menu size={14} /> Menu
+        </button>
       </nav>
 
-      {/* HERO SECTION - Ten prosvětlený vibe z obrázku */}
-      <section className="relative h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-[#f8f9fa]">
-        <motion.div 
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5 }}
-          className="absolute inset-0 z-0"
-        >
-          {/* Tady si představ tu bílou moderní vilu proti modré obloze */}
-          <Image 
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2500" 
-            alt="Luxury Villa" 
-            fill 
-            className="object-cover opacity-80"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white"></div>
-        </motion.div>
-
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <motion.h1 
-            {...fadeUp}
-            className="text-5xl md:text-[5.5vw] font-medium tracking-[-0.04em] leading-[1.05] mb-8"
-          >
-            Exceptional Living<br />Starts Here
-          </motion.h1>
-          <motion.p 
-            {...fadeUp}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-sm md:text-base text-gray-500 font-light max-w-xl mx-auto leading-relaxed tracking-wide"
-          >
-            Experience timeless architecture, exclusive locations, and luxury homes designed to inspire your next chapter.
-          </motion.p>
-        </div>
+      {/* HERO SECTION - Přesně podle screenu */}
+      <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20">
         
-        {/* Scroll indicator line */}
-        <motion.div 
-          initial={{ height: 0 }}
-          animate={{ height: 60 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-0 w-[1px] bg-black/10"
-        />
-      </section>
+        {/* Velký Serif v pozadí */}
+        <div className="absolute top-20 left-6 z-0 opacity-20 select-none pointer-events-none">
+          <h1 className="text-[25vw] font-serif font-light leading-none tracking-tighter text-white">VILA</h1>
+        </div>
 
-      {/* SECTION 2 - Content with Image (Dle tvého nového vzoru) */}
-      <section className="py-32 px-8 md:px-16 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+        {/* Main Content Grid */}
+        <div className="relative z-10 w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[1.2fr,0.8fr] gap-10 items-end mt-20">
+          
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
+            initial={{ opacity: 0, x: -30 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 1.2, ease: luxuryEasing }}
+            className="space-y-4"
           >
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tight leading-tight mb-8">
-              Your Home, Your<br />Legacy, Designed<br />Forever
+            <h2 className="text-6xl md:text-[8vw] font-serif font-light leading-[0.85] tracking-tighter uppercase italic">
+              KUNRATICE,<br />PRAGUE
             </h2>
-            <p className="text-sm text-gray-400 font-light leading-relaxed mb-10 max-w-md">
-              More than just a residence. Haven is a reflection of your individuality — thoughtfully designed, expertly crafted, and created to inspire for generations to come.
-            </p>
-            <div className="flex gap-4">
-              <div className="w-40 h-24 bg-gray-100 relative overflow-hidden rounded-xl">
-                 <Image src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=400" alt="Detail" fill className="object-cover" />
-              </div>
-              <div className="w-40 h-24 bg-gray-100 relative overflow-hidden rounded-xl">
-                 <Image src="https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?q=80&w=400" alt="Detail" fill className="object-cover" />
-              </div>
+            <div className="w-full h-[60vh] relative border border-white/10 overflow-hidden">
+               <Image src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2500" alt="Vila" fill className="object-cover grayscale-[30%]" />
+               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+               {/* Kompas v pozadí (dekorace) */}
+               <Compass className="absolute top-10 right-10 text-white/10" size={120} strokeWidth={0.5} />
             </div>
           </motion.div>
 
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
-            className="aspect-square relative rounded-3xl overflow-hidden shadow-2xl shadow-black/5"
+            initial={{ opacity: 0, y: 30 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 1.2, delay: 0.3, ease: luxuryEasing }}
+            className="space-y-8"
           >
-            <Image 
-              src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=2000" 
-              alt="Villa Exterior" 
-              fill 
-              className="object-cover"
-            />
+            {/* Parametry - Glassmorphism Grid */}
+            <div className="grid grid-cols-3 gap-px bg-white/10 border border-white/10">
+              {[
+                { icon: Maximize, label: "Plocha", val: "442 m²" },
+                { icon: HomeIcon, label: "Pozemek", val: "1.250 m²" },
+                { icon: BedDouble, label: "Dispozice", val: "6+KK" },
+                { icon: HomeIcon, label: "Terasa", val: "100 m²" },
+                { icon: HomeIcon, label: "Garáž", val: "2 místa" },
+                { icon: Bath, label: "Koupelny", val: "5" }
+              ].map((p, i) => (
+                <div key={i} className="bg-black/40 backdrop-blur-md p-6 flex flex-col gap-2">
+                  <p className="text-[9px] uppercase tracking-widest text-gray-500">{p.label}</p>
+                  <p className="text-xl font-bold tracking-tight flex items-center gap-2"><p.icon size={14} className="text-[#D4AF37]"/> {p.val}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Cena a CTA */}
+            <div className="space-y-6">
+              <div className="text-center md:text-left">
+                <p className="text-[10px] uppercase tracking-[0.5em] text-gray-500 mb-2">Nabídková cena</p>
+                <p className="text-5xl md:text-7xl font-black tracking-tighter text-white">59.000.000 <span className="text-2xl text-gray-500 uppercase">Kč</span></p>
+              </div>
+              <button className="w-full bg-[#D4AF37] text-black py-6 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-white transition-all shadow-2xl">
+                SJEDNAT PRIVÁTNÍ PROHLÍDKU
+              </button>
+            </div>
           </motion.div>
         </div>
-      </section>
 
-      {/* SECTION 3 - Detail grid */}
-      <section className="bg-[#f8f9fa] py-32 px-8 md:px-16 border-t border-black/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-end mb-16">
-            <h3 className="text-3xl font-medium tracking-tight">Experience Inspired Living<br/>in Every Detail</h3>
-            <p className="text-[10px] uppercase font-bold tracking-widest text-gray-400 max-w-[200px] text-right">
-              Browse curated homes where elegance and innovation meet.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-             {[1,2,3].map((item) => (
-               <div key={item} className="aspect-[4/5] bg-gray-200 relative group overflow-hidden rounded-2xl cursor-pointer">
-                  <Image 
-                    src={`https://images.unsplash.com/photo-1600${607687920 + item}-4e2a09cf159d?q=80&w=800`} 
-                    alt="Interior" 
-                    fill 
-                    className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                  />
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                      <ArrowRight size={20} />
-                    </div>
-                  </div>
-               </div>
-             ))}
-          </div>
+        {/* Makléř Section - Spodní část */}
+        <div className="relative z-10 w-full max-w-[1600px] mx-auto mt-24 pb-20 grid grid-cols-1 md:grid-cols-[auto,1fr] gap-12 items-center">
+           <div className="w-48 h-64 relative border border-white/20 grayscale hover:grayscale-0 transition-all duration-700">
+             <Image src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600" alt="Makléř" fill className="object-cover" />
+           </div>
+           <div>
+             <h3 className="text-2xl font-bold uppercase tracking-widest">MICHAL ČERNÝ</h3>
+             <p className="text-[10px] text-[#D4AF37] tracking-[0.4em] uppercase mb-4">• VÁŠ EXKLUZIVNÍ MAKLÉŘ</p>
+             <div className="flex gap-8 text-[11px] font-bold tracking-widest uppercase text-gray-400">
+               <a href="#" className="hover:text-white transition-colors">+420 777 123 456</a>
+               <a href="#" className="hover:text-white transition-colors">MICHAL@REMAX-ALPHA.CZ</a>
+             </div>
+           </div>
         </div>
       </section>
 
