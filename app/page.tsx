@@ -15,8 +15,8 @@ export default function Home() {
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const opacityBg = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
 
-  // Buttery smooth křivka
-  const smooth = [0.16, 1, 0.3, 1];
+  // OPRAVA TYPESCRIPTU: Natvrdo řekneme, že jsou to přesně 4 čísla pro křivku
+  const smooth: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
   return (
     <main className="bg-[#0a0b0a] text-white min-h-screen selection:bg-white selection:text-black font-sans overflow-hidden">
@@ -135,7 +135,6 @@ export default function Home() {
                 initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.2, duration: 0.8, ease: smooth }}
                 className="relative"
               >
-                {/* To malé architektonické plusko na začátku čáry */}
                 <Plus size={14} className="absolute -left-[42px] md:-left-[74px] top-1 text-white/40" />
                 <h4 className="text-sm font-black uppercase tracking-widest text-white mb-2">{item.title}</h4>
                 <p className="text-xs text-gray-500 uppercase tracking-widest leading-relaxed max-w-sm">{item.desc}</p>
