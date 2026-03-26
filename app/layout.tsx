@@ -1,8 +1,17 @@
 import './globals.css'
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+
+export const metadata = {
+  title: 'RE/MAX ALPHA | LUXURY',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="cs">
-      <body>{children}</body>
+      <body style={{ background: 'black' }}>{children}</body>
     </html>
   )
 }
