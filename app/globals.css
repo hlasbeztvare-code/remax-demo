@@ -13,16 +13,10 @@ body {
   background: #080808 !important;
   color: #ffffff !important;
   font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
 }
 
 .font-serif {
   font-family: 'Playfair Display', serif !important;
-}
-
-/* Fix pro plynulý scroll */
-html {
-  scroll-behavior: smooth;
 }
