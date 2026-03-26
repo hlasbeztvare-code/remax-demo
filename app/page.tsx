@@ -1,145 +1,151 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { MapPin, Maximize, BedDouble, Phone, Mail, Menu } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Plus } from 'lucide-react';
+import { useRef } from 'react';
 import Image from 'next/image';
 
 export default function Home() {
-  const luxuryEasing = [0.16, 1, 0.3, 1];
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const opacityBg = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
+
+  // Buttery smooth křivka
+  const smooth = [0.16, 1, 0.3, 1];
 
   return (
-    <main className="relative min-h-screen text-white bg-[#050505] selection:bg-[#D4AF37] selection:text-black">
+    <main className="bg-[#0a0b0a] text-white min-h-screen selection:bg-white selection:text-black font-sans overflow-hidden">
       
-      {/* SECTION 0: FULLSCREEN BACKGROUND PHOTO (Fixed) */}
-      <div className="fixed inset-0 w-full h-full z-0 overflow-hidden">
-        <Image 
-          src="/images/vila-ref.jpg" 
-          alt="Vila Kunratice, Prague" 
-          fill 
-          priority
-          className="object-cover opacity-60 grayscale-[50%] scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-[#050505]" />
-      </div>
+      {/* HEADER */}
+      <nav className="fixed top-0 w-full z-50 px-8 py-6 mix-blend-difference flex justify-between items-center text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400">
+        <div>RE/MAX ALPHA</div>
+        <div>MICHAL ČERNÝ</div>
+      </nav>
 
-      {/* SECTION 1: HEADER / NAV */}
-      <motion.nav 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: luxuryEasing }}
-        className="fixed top-0 w-full z-50 flex justify-between items-center px-10 py-8 backdrop-blur-sm bg-black/10 text-white"
-      >
-        <div className="flex items-center gap-2">
-          <div className="font-black text-xs md:text-sm tracking-[0.4em] uppercase">
-            RE/MAX <span className="text-gray-400 font-light">ALPHA LUXURY</span>
-          </div>
-        </div>
-        <div className="hidden md:flex gap-12 text-[9px] font-bold uppercase tracking-[0.2em] text-gray-300">
-          <a href="#property" className="hover:text-white transition-colors">Vily</a>
-          <a href="#property" className="hover:text-white transition-colors">Byty</a>
-          <a href="#broker" className="hover:text-white transition-colors">O nás</a>
-          <a href="#broker" className="hover:text-white transition-colors">Kontakt</a>
-        </div>
-        <button className="flex items-center gap-3 text-[9px] border border-white/20 px-6 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">
-          <Menu size={14} /> Menu
-        </button>
-      </motion.nav>
+      {/* SECTION 1: HERO BLUEPRINT */}
+      <section ref={containerRef} className="relative h-screen w-full flex flex-col justify-center px-8 md:px-16 overflow-hidden">
+        <motion.div style={{ y: yBg, opacity: opacityBg }} className="absolute inset-0 z-0">
+          <Image src="/images/vila-ref.jpg" alt="Vila" fill className="object-cover opacity-50" priority />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#0a0b0a]"></div>
+        </motion.div>
 
-      {/* SECTION 2: THE PROPERTY VIEW (Dusk View + Text) */}
-      <section id="property" className="relative min-h-screen z-10 p-10 flex flex-col justify-end pb-32">
-        <div className="w-full max-w-[1700px] mx-auto grid grid-cols-1 md:grid-cols-[1fr,auto] items-end gap-16">
-          
-          {/* Main stacked Serif Title & Price */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.5, ease: luxuryEasing }}
-          >
-            <div className="flex items-center gap-4 mb-12">
-               <div className="w-12 h-[1px] bg-[#D4AF37]"></div>
-               <span className="text-[10px] text-[#D4AF37] font-bold uppercase tracking-[0.4em]">Exclusive Listing • Michal Černý</span>
-            </div>
-            {/* STACKED SERIF TITLE (NO SCRIPT FONT) */}
-            <h1 className="text-8xl md:text-[11vw] font-serif font-light uppercase tracking-tighter leading-none mb-4 whitespace-nowrap">
-              VILA<br />KUNRATICE,<br />PRAGUE
-            </h1>
-            <div className="mt-6 text-sm md:text-xl font-bold uppercase tracking-[0.6em] text-gray-400 italic">
-              DEFINE LEGACY.
-            </div>
-          </motion.div>
-
-          {/* Pricing & Parameter Grid */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.5, ease: luxuryEasing, delay: 0.3 }}
-            className="text-right space-y-12"
-          >
-            <div className="inline-block glass-panel p-10 border border-white/5 bg-black/30 backdrop-blur-lg">
-               <div className="text-[10px] text-gray-500 font-bold uppercase tracking-[0.4em] mb-4">Plocha m² • Pozemek m² • Dispozice</div>
-               {/* GIGANTIC PRICE NOW HERE, INTEGRATED Decently */}
-               <div className="text-7xl md:text-[9vw] font-black tracking-tighter text-[#D4AF37] leading-none mb-12">
-                 59.000.000 <span className="text-4xl text-gray-500 uppercase">Kč</span>
-               </div>
-               
-               {/* Clean Parameters Grid (sans-serif) */}
-               <div className="grid grid-cols-3 gap-8 py-8 border-y border-white/5">
-                 <div className="flex items-center justify-end gap-3 text-sm font-bold tracking-widest text-white uppercase"><Maximize size={18} className="text-[#D4AF37]"/> 442 M²</div>
-                 <div className="flex items-center justify-end gap-3 text-sm font-bold tracking-widest text-white uppercase"><MapPin size={18} className="text-[#D4AF37]"/> 1.250 M²</div>
-                 <div className="flex items-center justify-end gap-3 text-sm font-bold tracking-widest text-white uppercase"><BedDouble size={18} className="text-[#D4AF37]"/> 6+KK</div>
-               </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 3: THE BROKER (Bílý kontrastní závěr) */}
-      <section id="broker" className="relative z-20 bg-white text-black py-32 px-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-          
-          {/* Fotka Makléře (Z Unsplash) */}
-          <div className="relative aspect-[3/4] bg-neutral-200 overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
-            <Image 
-              src="/images/makler.jpg" 
-              alt="Michal Černý" 
-              fill 
-              className="object-cover"
-            />
-          </div>
-
-          {/* Vizitka & Kontakt */}
-          <div>
-            <div className="flex items-center gap-4 mb-10">
-               <div className="w-8 h-[2px] bg-[#D4AF37]"></div>
-               <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500">Zastoupení Prodávajícího</span>
-            </div>
-            
-            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">
-              Michal Černý
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto mt-20">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: smooth }}>
+            <h2 className="text-gray-400 font-medium tracking-[0.3em] uppercase text-xs md:text-sm mb-4">
+              ZA 3 MĚSÍCE K NASTĚHOVÁNÍ
             </h2>
-            <p className="text-sm text-gray-600 font-light uppercase tracking-widest mb-12 leading-relaxed max-w-lg">
-              Michal Černý definuje trh s nejexkluzivnějšími nemovitostmi v České republice. Bez kompromisů. Tuto nemovitost zná do posledního detailu.
-            </p>
+            <h1 className="text-6xl md:text-[8vw] font-black uppercase tracking-widest leading-[0.9] text-white/90">
+              HOTOVÝ DŮM<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white/80 to-gray-500">VAŠICH SNŮ</span>
+            </h1>
+          </motion.div>
 
-            <div className="space-y-6 mb-16">
-              <a href="tel:+420777123456" className="flex items-center gap-4 text-sm font-bold tracking-widest uppercase hover:text-[#D4AF37] transition-colors group">
-                <Phone size={20} className="text-[#D4AF37] group-hover:scale-110 transition-transform"/> +420 777 123 456
-              </a>
-              <a href="mailto:michal@remax-alpha.cz" className="flex items-center gap-4 text-sm font-bold tracking-widest uppercase hover:text-[#D4AF37] transition-colors group">
-                <Mail size={20} className="text-[#D4AF37] group-hover:scale-110 transition-transform"/> michal@remax-alpha.cz
-              </a>
-            </div>
-
-            <button className="px-16 py-6 bg-black text-white text-[10px] font-black tracking-[0.3em] uppercase hover:bg-[#D4AF37] hover:text-black transition-colors shadow-2xl">
-              Sjednat privátní prohlídku
-            </button>
+          {/* Architektonické štítky s linkami (jako na screenu) */}
+          <div className="relative mt-16 h-40 hidden md:block">
+            <motion.div 
+              initial={{ width: 0, opacity: 0 }} animate={{ width: 200, opacity: 1 }} transition={{ delay: 0.8, duration: 1 }}
+              className="absolute left-0 top-0 border-t border-l border-white/20 p-4 bg-black/40 backdrop-blur-md"
+            >
+              <span className="text-[10px] uppercase tracking-widest text-gray-300">Stavíme po celé<br/>České republice</span>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ width: 0, opacity: 0 }} animate={{ width: 250, opacity: 1 }} transition={{ delay: 1, duration: 1 }}
+              className="absolute left-[300px] top-[40px] border-t border-l border-white/20 p-4 bg-black/40 backdrop-blur-md"
+            >
+              <span className="text-[10px] uppercase tracking-widest text-gray-300">Od individuálních řešení<br/>po hotové projekty</span>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      <footer className="relative z-20 py-16 text-center border-t border-white/5 bg-black/30 backdrop-blur-sm">
-        <p className="text-[9px] font-bold text-gray-600 tracking-[0.8em] uppercase italic">RE/MAX ALPHA LUXURY SERVICES © 2026 • Michal Černý</p>
-      </footer>
+      {/* SECTION 2: GRID & PAIN POINTS */}
+      <section className="relative py-32 px-8 md:px-16 border-t border-white/10 bg-[#0a0b0a]">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+          
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1, ease: smooth }}
+            className="flex flex-col justify-end"
+          >
+            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-widest leading-[0.9] text-white/90">
+              CO BRÁNÍ<br />ROZHODNUTÍ<br />KE KOUPI?
+            </h2>
+          </motion.div>
+
+          {/* Technický Grid (Glassmorphism s pluskama) */}
+          <div className="grid grid-cols-2 gap-px bg-white/10 p-px">
+            {[
+              "Neustálé překračování rozpočtu",
+              "Dlouhé a nepředvídatelné stavební práce",
+              "Strach, že dům nevydrží dlouho",
+              "Nemožnost kontrolovat proces"
+            ].map((text, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.15, duration: 0.8 }}
+                className={`relative bg-[#0a0b0a]/80 backdrop-blur-xl p-8 aspect-square flex flex-col justify-between ${i === 2 ? 'bg-white text-black' : ''}`}
+              >
+                <div className={`text-xs uppercase tracking-widest leading-relaxed font-bold ${i === 2 ? 'text-black' : 'text-gray-400'}`}>
+                  {text}
+                </div>
+                <div className="self-end">
+                  <Plus className={`${i === 2 ? 'text-black' : 'text-white/50'}`} size={20} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: VÝHODNÉ ŘEŠENÍ (Features) */}
+      <section className="relative py-32 px-8 md:px-16 border-t border-white/10 bg-[#0a0b0a]">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, ease: smooth }}
+          >
+            <h3 className="text-gray-500 uppercase tracking-[0.4em] text-[10px] font-bold mb-4">MODULÁRNÍ DŮM</h3>
+            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-widest leading-[0.9] text-white/90 mb-12">
+              VÝHODNÉ<br />ŘEŠENÍ<br />
+              <span className="text-gray-600 font-light">[NA KLÍČ]</span>
+            </h2>
+            
+            <div className="relative aspect-[4/3] w-full max-w-md overflow-hidden border border-white/10">
+              <Image src="/images/vila-ref.jpg" alt="Detail" fill className="object-cover opacity-80" />
+              <div className="absolute bottom-0 left-0 bg-white text-black px-6 py-3 text-[10px] font-black uppercase tracking-widest">
+                ZÁRUKA 5 LET
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Technický List Výhod */}
+          <div className="flex flex-col justify-center gap-12 border-l border-white/10 pl-8 md:pl-16 relative">
+            {[
+              { title: "ÚSPORA ČASU", desc: "Dodávka a montáž hotového domu za pouhých 7-10 dní." },
+              { title: "NÍZKÉ NÁKLADY NA VYTÁPĚNÍ", desc: "Prémiová tepelná izolace z nehořlavé kamenné vlny." },
+              { title: "PEVNOST A STABILITA", desc: "Konstrukce z lepeného LVL dřeva, odolná vůči extrémním vlivům." }
+            ].map((item, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.2, duration: 0.8, ease: smooth }}
+                className="relative"
+              >
+                {/* To malé architektonické plusko na začátku čáry */}
+                <Plus size={14} className="absolute -left-[42px] md:-left-[74px] top-1 text-white/40" />
+                <h4 className="text-sm font-black uppercase tracking-widest text-white mb-2">{item.title}</h4>
+                <p className="text-xs text-gray-500 uppercase tracking-widest leading-relaxed max-w-sm">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
     </main>
   );
 }
